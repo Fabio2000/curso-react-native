@@ -62,7 +62,8 @@ export default class App extends Component {
         <Text style={styles.instructions}>Tamanho da grade:
         {params.getColumnsAmount()}x{params.getColumnsAmount()}</Text>
         <View style={styles.board}>
-        <MineField board={this.state.board}/>
+        <MineField board={this.state.board}
+        onOpenField={this.setState.onOpenField}/>
         </View>
       </View>
     );
