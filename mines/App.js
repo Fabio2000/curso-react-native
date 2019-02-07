@@ -63,7 +63,7 @@ export default class App extends Component {
         {params.getColumnsAmount()}x{params.getColumnsAmount()}</Text>
         <View style={styles.board}>
         <MineField board={this.state.board}
-        onOpenField={this.setState.onOpenField}/>
+        onOpenField={this.onOpenField}/>
         </View>
       </View>
     );
