@@ -38,42 +38,42 @@ export default class Agenda extends Component{
              estimateAt: new Date(), doneAt:new Date()},
              {id: Math.random(), desc: 'Concluir trabalho Robson',
              estimateAt: new Date(), doneAt: null},
-        ],
-        visibleTasks: [],
-        showDoneTask: true,
-    }
-
-    filterTasks = () => {
-        let visibleTasks = null
-        if(this.showDoneTask){
-            visibleTasks= [...this.state.tasks]
-            } else {
-             const pending = task => task.doneAt === null
-             visibleTasks = this.state.tasks.filter(pending)
-       }
-       this.setState({ visibleTasks })
-    }
-
-    toggleFilter = () => {
-        this.setState({ showDoneTask: !this.state.showDoneTask }
-            , this.filterTasks)
-    }
-
-    componentDidCatch = () => {
-        this.filterTasks()
-    }
-
-    toggleTask = id => {
-        const tasks = this.state.tasks.map(task => {
-        if (task.id === id ){
-            task = {...task }
+            ],
+            visibleTasks: [],
+            showDoneTask: true,
         }
-            return task
-        })
-       this.setState({ tasks })
-    }
-
-    render() {
+        
+        filterTasks = () => {
+            let visibleTasks = null
+            if(this.state.showDoneTask){
+                visibleTasks= [...this.state.tasks]
+            } else {
+                const pending = task => task.doneAt === null
+                visibleTasks = this.state.tasks.filter(pending)
+            }
+            this.setState({ visibleTasks })
+        }
+        
+        toggleFilter = () => {
+            this.setState({ showDoneTask: !this.state.showDoneTask }
+                , this.filterTasks)
+            }
+            
+            componentDidCatch = () => {
+                this.filterTasks()
+            }
+            
+            toggleTask = id => {
+                const tasks = this.state.tasks.map(task => {
+                    if (task.id === id ){
+                        task = {...task }
+                    }
+                    return task
+                })
+                this.setState({ tasks })
+            }
+            
+            render() {
         return (
             <View style={styles.container}>
                <ImageBackground source={todayImage} 
@@ -95,7 +95,7 @@ export default class Agenda extends Component{
                <FlatList data={this.state.visibleTasks}
                      keyExtractor={item=> `${item.id}`}
                      renderItem={({item}) => 
-                     <Task {...item} toggleTask={this.toggleTask}/>}/>
+                     <Task {...item} OnToggleTask={this.toggleTask}/>}/>
                </View>
             </View>
         )
