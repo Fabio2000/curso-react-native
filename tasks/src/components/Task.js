@@ -1,19 +1,17 @@
 import React from 'react'
-import { StyleSheet, 
-    Text,
-     View, TouchableNativeFeedback } from 'react-native'
+import { StyleSheet, Text, View, TouchableWithoutFeedback} from 'react-native'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import moment from 'moment'
 import 'moment/locale/pt-br'
 import commonStyles from '../commonStyles'
 
 export default props => {
-    let check = null 
-    if (props.doneAt !== null){
-        check = (
+    let check = null
+    if (props.doneAt !== null) {
+        check =(  
             <View style={styles.done}>
-            <Icon name='check' size={20}
-                  color={commonStyles.colors.secondary}/>
+                <Icon name='check' size={20}
+                    color={commonStyles.colors.secondary} />
             </View>
         )
     }else{
@@ -21,20 +19,20 @@ export default props => {
     }
 
     const descStyle = props.doneAt !== null ?
-    { textDecorationLine: 'line-through' } : {}
+    {textDecorationLine: 'line-through'} : {}
 
     return (
         <View style={styles.container}>
-        <TouchableNativeFeedback onPress={() => props.OnToggleTask(props.id)}>
-          <View style={styles.checkContainer}>{check}</View>
-        </TouchableNativeFeedback>
+        <TouchableWithoutFeedback onPress={() => props.toggleTask(props.id)}>
+            <View style={styles.checkContainer}>{check}</View>
+        </TouchableWithoutFeedback>
             <View>
                 <Text style={[styles.description, descStyle]}>
-                      {props.desc}
+                    {props.desc}
                 </Text>
                 <Text style={styles.date}>
-                {moment(props.estimateAt).locale('pt-br').format('ddd, D [de] MMMM')}</Text>
-
+                {moment(props.estimateAt).locale('pt-br').format('ddd, d [de] YYYY')}
+                </Text>
             </View>
         </View>
     )
@@ -76,5 +74,5 @@ const styles = StyleSheet.create({
         fontFamily: commonStyles.fontFamily,
         color: commonStyles.colors.subText,
         fontSize: 12,
-    }
+    },
 })
