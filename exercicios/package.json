@@ -9,7 +9,7 @@
   "dependencies": {
     "prop-types": "^15.6.2",
     "react": "16.6.1",
-    "react-native": "0.57.5",
+    "react-native": "0.70.2",
     "react-navigation": "2.7.0"
   },
   "devDependencies": {
